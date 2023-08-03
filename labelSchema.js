@@ -252,6 +252,34 @@ module.exports = {
       'country': getFirstProperty(['country'])
     }
   },
+  'VNM': {
+    'valueFunctions': {
+      'local': getFirstProperty(['locality', 'localadmin']),
+      'regional': getFirstProperty(['region']),
+      'country': getFirstProperty(['dependency', 'country'])
+    }
+  },
+  'THA': {
+    'valueFunctions': {
+      'local': getFirstProperty(['locality', 'localadmin']),
+      'regional': getFirstProperty(['region']),
+      'country': getFirstProperty(['dependency', 'country'])
+    }
+  },
+  'IDN': {
+    'valueFunctions': {
+      'local': getFirstProperty(['locality', 'localadmin']),
+      'regional': getFirstProperty(['region']),
+      'country': getFirstProperty(['dependency', 'country'])
+    }
+  },
+  'PHL': {
+    'valueFunctions': {
+      'local': getFirstProperty(['locality', 'localadmin']),
+      'regional': getFirstProperty(['region']),
+      'country': getFirstProperty(['dependency', 'country'])
+    }
+  },
   'JPN': {
     'languages': {
       'JPN': {
