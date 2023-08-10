@@ -255,6 +255,7 @@ module.exports = {
   'VNM': {
     'valueFunctions': {
       'local': getFirstProperty(['locality', 'localadmin']),
+      'county': getFirstProperty(['county']),
       'regional': getFirstProperty(['region']),
       'country': getFirstProperty(['dependency', 'country'])
     }
