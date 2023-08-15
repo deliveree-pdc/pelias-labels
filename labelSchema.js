@@ -254,6 +254,7 @@ module.exports = {
   },
   'VNM': {
     'valueFunctions': {
+      'borough': getFirstProperty(['borough']),
       'local': getFirstProperty(['locality', 'localadmin']),
       'county': getFirstProperty(['county']),
       'regional': getFirstProperty(['region']),
@@ -261,23 +262,30 @@ module.exports = {
     }
   },
   'THA': {
+    // [Plot/House number/Village], [Street Name/number], [Subdistrict], [District], [Province], [Postal Code], [Country]
     'valueFunctions': {
-      'local': getFirstProperty(['locality', 'localadmin']),
+      'borough': getFirstProperty(['borough']),
+      'county': getFirstProperty(['county']),
       'regional': getFirstProperty(['region']),
+      'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
   'IDN': {
     'valueFunctions': {
-      'local': getFirstProperty(['locality', 'localadmin']),
+      'borough': getFirstProperty(['borough']),
+      'county': getFirstProperty(['county']),
       'regional': getFirstProperty(['region']),
+      'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
   'PHL': {
+    // [House Number/Building Name/Number] [Street Name/Subdivision], [Barangay/District], [City/Municipality] [Province], [ZIP Code], [Country]
     'valueFunctions': {
-      'local': getFirstProperty(['locality', 'localadmin']),
+      'county': getFirstProperty(['county']),
       'regional': getFirstProperty(['region']),
+      'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
