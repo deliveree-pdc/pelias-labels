@@ -265,8 +265,8 @@ module.exports = {
     // [Plot/House number/Village], [Street Name/number], [Subdistrict], [District], [Province], [Postal Code], [Country]
     'valueFunctions': {
       'borough': getFirstProperty(['borough']),
-      'county': getFirstProperty(['county']),
-      'regional': getFirstProperty(['region']),
+      'county': getFirstProperty(['county','macrocounty']),
+      'regional': getFirstProperty(['region', 'macroregion']),
       'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
@@ -274,8 +274,8 @@ module.exports = {
   'IDN': {
     'valueFunctions': {
       'borough': getFirstProperty(['borough']),
-      'county': getFirstProperty(['county']),
-      'regional': getFirstProperty(['region']),
+      'county': getFirstProperty(['county','macrocounty']),
+      'regional': getFirstProperty(['region', 'macroregion']),
       'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
@@ -283,8 +283,9 @@ module.exports = {
   'PHL': {
     // [House Number/Building Name/Number] [Street Name/Subdivision], [Barangay/District], [City/Municipality] [Province], [ZIP Code], [Country]
     'valueFunctions': {
-      'county': getFirstProperty(['county']),
-      'regional': getFirstProperty(['region']),
+      'borough': getFirstProperty(['borough']),
+      'county': getFirstProperty(['county','macrocounty']),
+      'regional': getFirstProperty(['region', 'macroregion']),
       'postalcode': getFirstProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
