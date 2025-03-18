@@ -283,7 +283,7 @@ module.exports = {
   'PHL': {
     // [House Number/Building Name/Number] [Street Name/Subdivision], [Barangay/District], [City/Municipality] [Province], [ZIP Code], [Country]
     'valueFunctions': {
-      'borough': getFirstProperty(['borough']),
+      // 'borough': getFirstProperty(['borough']),
       'county': getFirstProperty(['county','macrocounty']),
       'regional': getFirstProperty(['region', 'macroregion']),
       'postalcode': getFirstProperty(['postalcode']),
