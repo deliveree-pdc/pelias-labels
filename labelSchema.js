@@ -264,7 +264,7 @@ module.exports = {
   'THA': {
     // [Plot/House number/Village], [Street Name/number], [Subdistrict], [District], [Province], [Postal Code], [Country]
     'valueFunctions': {
-      'borough': getFirstProperty(['borough']),
+      'borough': getFirstProperty(['locality', 'borough']),
       'county': getFirstProperty(['county','macrocounty']),
       'regional': getFirstProperty(['region', 'macroregion']),
       'postalcode': getFirstProperty(['postalcode']),
