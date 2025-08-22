@@ -104,8 +104,7 @@ module.exports = function( record, language ){
   const schema = getSchema(record, language);
   const separator = _.get(schema, ['meta','separator'], ', ');
   const builder = _.get(schema, ['meta', 'builder'], defaultBuilder);
-
-  let labelParts = builder(schema, record);
+  const labelParts = builder(schema, record, { language, defaultBuilder });
 
   return _.trim(labelParts.join(separator));
 };

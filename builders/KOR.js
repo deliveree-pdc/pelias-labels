@@ -58,7 +58,12 @@ function buildAdminLabelPart(schema, record) {
 // builds a complete label by combining several components
 // admin parts: administrative information like city
 // name or address parts: info on the actual record, like name or address
-function koreaBuilder(schema, record) {
+function koreaBuilder(schema, record, { language, defaultBuilder }) {
+
+  // only run builder when requested language is set to Korean
+  if (language !== 'kor') {
+    return defaultBuilder.apply(null, arguments);
+  }
 
   const adminParts = buildAdminLabelPart(schema, record);
   const nameorAddressParts = nameOrAddressComponents(schema, record);
