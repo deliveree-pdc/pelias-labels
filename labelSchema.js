@@ -219,13 +219,17 @@ module.exports = {
   },
   'KOR': {
     'valueFunctions': {
-      'country': getFirstProperty(['country']),
+      'city': getFirstProperty(['county']),
       'province': getFirstProperty(['region']),
-      'city': getFirstProperty(['county'])
+      'country': getFirstProperty(['country'])
     },
     'meta': {
       'separator': ' ',
-      'builder': require('./builders/KOR')
+      'builder': require('./builders/KOR'),
+      'predicate' (schema, record, language) {
+        // only run builder when requested language is set to Korean
+        return language === 'kor';
+      }
     }
   },
   'FRA': {

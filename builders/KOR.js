@@ -16,7 +16,7 @@ function dedupeNameAndLastLabelElement(labelParts) {
   return labelParts;
 }
 
-function nameOrAddressComponents(schema, record) {
+function nameOrAddressComponents(record) {
   const labelParts = [];
 
   // add the address/venue components
@@ -47,7 +47,7 @@ function buildAdminLabelPart(schema, record) {
   // the order of the properties in the file determine
   // the order of elements in this arrayt
   // For Korea, we start with the country and work backwards
-  for (const field in schema.valueFunctions) {
+  for (const field of Object.keys(schema.valueFunctions).reverse()) {
     const valueFunction = schema.valueFunctions[field];
     labelParts.push(valueFunction(record));
   }
@@ -58,15 +58,10 @@ function buildAdminLabelPart(schema, record) {
 // builds a complete label by combining several components
 // admin parts: administrative information like city
 // name or address parts: info on the actual record, like name or address
-function koreaBuilder(schema, record, { language, defaultBuilder }) {
-
-  // only run builder when requested language is set to Korean
-  if (language !== 'kor') {
-    return defaultBuilder.apply(null, arguments);
-  }
+function koreaBuilder(schema, record) {
 
   const adminParts = buildAdminLabelPart(schema, record);
-  const nameorAddressParts = nameOrAddressComponents(schema, record);
+  const nameorAddressParts = nameOrAddressComponents(record);
 
   let labelParts = _.concat(adminParts, nameorAddressParts);
 
