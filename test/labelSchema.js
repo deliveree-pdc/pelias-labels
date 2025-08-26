@@ -8,14 +8,14 @@ module.exports.tests.supported_countries = function(test, common) {
   test('supported countries', function(t) {
     const supported_countries = Object.keys(schemas);
 
-    t.notEquals(supported_countries.indexOf('USA'), -1);
-    t.notEquals(supported_countries.indexOf('CAN'), -1);
-    t.notEquals(supported_countries.indexOf('GBR'), -1);
-    t.notEquals(supported_countries.indexOf('AUS'), -1);
-    t.notEquals(supported_countries.indexOf('KOR'), -1);
-    t.notEquals(supported_countries.indexOf('FRA'), -1);
-    t.notEquals(supported_countries.indexOf('ITA'), -1);
-    t.notEquals(supported_countries.indexOf('default'), -1);
+    t.ok(supported_countries.includes('USA'));
+    t.ok(supported_countries.includes('CAN'));
+    t.ok(supported_countries.includes('GBR'));
+    t.ok(supported_countries.includes('AUS'));
+    t.ok(supported_countries.includes('KOR'));
+    t.ok(supported_countries.includes('FRA'));
+    t.ok(supported_countries.includes('ITA'));
+    t.ok(supported_countries.includes('default'));
 
     t.equals(Object.keys(schemas.USA.valueFunctions).length, 4);
     t.equals(Object.keys(schemas.CAN.valueFunctions).length, 3);
