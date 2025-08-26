@@ -164,9 +164,9 @@ module.exports.tests.south_korea = function(test, common) {
   });
 };
 
-// when the requested language is not 'kor' fields are returned in the order
+// when the requested language is english, fields are returned in the order
 // specified by the default generator.
-module.exports.tests.south_korea_lang_eng = function(test, common) {
+module.exports.tests.south_korea_lang_venue_eng = function(test, common) {
   test('venue', function(t) {
     var doc = {
       'name': { 'default': 'venue name' },
@@ -183,7 +183,52 @@ module.exports.tests.south_korea_lang_eng = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc, 'eng'),'venue name, county name, region name, South Korea');
+    t.equal(generator(doc, 'eng'),'venue name, localadmin name, South Korea');
+    t.end();
+  });
+};
+
+// when the requested language is unspecified, fields are returned in the order
+// specified by the default generator.
+module.exports.tests.south_korea_venue_lang_default = function(test, common) {
+  test('venue', function(t) {
+    var doc = {
+      'name': { 'default': 'venue name' },
+      'layer': 'venue',
+      'housenumber': 'house number',
+      'street': 'street name',
+      'neighbourhood': ['neighbourhood name'],
+      'localadmin': ['localadmin name'],
+      'county': ['county name'],
+      'macrocounty': ['macrocounty name'],
+      'region_a': ['region abbr'],
+      'region': ['region name'],
+      'macroregion': ['macroregion name'],
+      'country_a': ['KOR'],
+      'country': ['South Korea']
+    };
+    t.equal(generator(doc),'venue name, localadmin name, South Korea');
+    t.end();
+  });
+};
+
+// when the requested language is unspecified, fields are returned in the order
+// specified by the default generator.
+module.exports.tests.south_korea_admin_lang_default = function(test, common) {
+  test('venue', function(t) {
+    var doc = {
+      'name': { 'default': 'locality name' },
+      'layer': 'locality',
+      'locality': ['locality name'],
+      'county': ['county name'],
+      'macrocounty': ['macrocounty name'],
+      'region_a': ['region abbr'],
+      'region': ['region name'],
+      'macroregion': ['macroregion name'],
+      'country_a': ['KOR'],
+      'country': ['South Korea']
+    };
+    t.equal(generator(doc), 'locality name, South Korea');
     t.end();
   });
 };
