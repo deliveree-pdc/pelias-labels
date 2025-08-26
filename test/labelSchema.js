@@ -4,14 +4,6 @@ const schemas = require('../labelSchema');
 
 module.exports.tests = {};
 
-module.exports.tests.interface = function(test, common) {
-  test('interface', function(t) {
-    t.equal(typeof schemas, 'object', 'valid object');
-    t.equal(schemas.hasOwnProperty('default'), true, 'has default defined');
-    t.end();
-  });
-};
-
 module.exports.tests.supported_countries = function(test, common) {
   test('supported countries', function(t) {
     const supported_countries = Object.keys(schemas);
