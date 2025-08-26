@@ -17,12 +17,6 @@ function dedupeNameAndFirstLabelElement(labelParts) {
   return labelParts;
 }
 
-function getLanguage(language) {
-  if (!_.isString(language)) { return; }
-
-  return language.toUpperCase();
-}
-
 // this can go away once geonames is no longer supported
 // https://github.com/pelias/wof-admin-lookup/issues/49
 function isCountry(layer) {
@@ -102,20 +96,10 @@ function defaultBuilder(schema, record) {
 
 module.exports = function( record, language ){
   const schema = getSchema(record, language);
+  const separator = _.get(schema, ['meta','separator'], ', ');
+  const builder = _.get(schema, ['meta', 'builder'], defaultBuilder);
 
-  let separator = ', ';
-  let builder = defaultBuilder;
-
-  // country-specific builder
-  if (_.has(schema, 'meta.builder')) {
-    const predicate = _.get(schema, 'meta.predicate', () => true);
-    if (predicate(schema, record, language)) {
-      separator = _.get(schema, 'meta.separator', separator);
-      builder = _.get(schema, 'meta.builder');
-    }
-  }
-
-  const labelParts = builder(schema, record);
+  let labelParts = builder(schema, record);
 
   return _.trim(labelParts.join(separator));
 };
