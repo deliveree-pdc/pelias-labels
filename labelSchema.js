@@ -221,7 +221,7 @@ module.exports = {
     'languages': {
       'KOR': {
         'valueFunctions': {
-          'county': getFirstProperty(['country']),
+          'country': getFirstProperty(['country']),
           'province': getFirstProperty(['region']),
           'city': getFirstProperty(['county'])
         },
