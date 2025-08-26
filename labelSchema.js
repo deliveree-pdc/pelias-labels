@@ -232,8 +232,7 @@ module.exports = {
       }
     },
     'valueFunctions': {
-      'city': getFirstProperty(['county']),
-      'province': getFirstProperty(['region']),
+      'city': getFirstProperty(['locality', 'localadmin', 'region']),
       'country': getFirstProperty(['country'])
     }
   },
