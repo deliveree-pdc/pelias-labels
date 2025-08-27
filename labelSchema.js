@@ -218,14 +218,22 @@ module.exports = {
     }
   },
   'KOR': {
-    'valueFunctions': {
-      'country': getFirstProperty(['country']),
-      'province': getFirstProperty(['region']),
-      'city': getFirstProperty(['county'])
+    'languages': {
+      'KOR': {
+        'valueFunctions': {
+          'country': getFirstProperty(['country']),
+          'province': getFirstProperty(['region']),
+          'city': getFirstProperty(['county'])
+        },
+        'meta': {
+          'separator': ' ',
+          'builder': require('./builders/KOR')
+        }
+      }
     },
-    'meta': {
-      'separator': ' ',
-      'builder': require('./builders/KOR')
+    'valueFunctions': {
+      'city': getFirstProperty(['locality', 'localadmin', 'region']),
+      'country': getFirstProperty(['country'])
     }
   },
   'FRA': {
