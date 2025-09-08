@@ -17,12 +17,6 @@ function dedupeNameAndFirstLabelElement(labelParts) {
   return labelParts;
 }
 
-function getLanguage(language) {
-  if (!_.isString(language)) { return; }
-
-  return language.toUpperCase();
-}
-
 // this can go away once geonames is no longer supported
 // https://github.com/pelias/wof-admin-lookup/issues/49
 function isCountry(layer) {
