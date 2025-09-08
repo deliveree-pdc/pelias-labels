@@ -26,7 +26,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name venue name');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name venue name');
     t.end();
   });
 
@@ -41,7 +41,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name street name 123');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name street name 123');
     t.end();
   });
 
@@ -58,7 +58,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name street name 123');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name street name 123');
     t.end();
   });
 
@@ -74,7 +74,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name neighbourhood name');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name neighbourhood name');
     t.end();
   });
 
@@ -89,7 +89,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name locality name');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name locality name');
     t.end();
   });
 
@@ -103,7 +103,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name localadmin name');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name localadmin name');
     t.end();
   });
 
@@ -116,7 +116,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name county name');
+    t.equal(generator(doc, 'kor'),'South Korea region name county name');
     t.end();
   });
 
@@ -128,7 +128,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea region name');
+    t.equal(generator(doc, 'kor'),'South Korea region name');
     t.end();
   });
 
@@ -139,7 +139,7 @@ module.exports.tests.south_korea = function(test, common) {
       'country_a': ['KOR'],
       'country': ['South Korea']
     };
-    t.equal(generator(doc),'South Korea');
+    t.equal(generator(doc, 'kor'),'South Korea');
     t.end();
   });
 
@@ -159,7 +159,76 @@ module.exports.tests.south_korea = function(test, common) {
       'street': '모세로',
       'country': ['한국']
     };
-    t.equal(generator(doc),'한국 서울 용산구 모세로 27');
+    t.equal(generator(doc, 'kor'),'한국 서울 용산구 모세로 27');
+    t.end();
+  });
+};
+
+// when the requested language is english, fields are returned in the order
+// specified by the default generator.
+module.exports.tests.south_korea_lang_venue_eng = function(test, common) {
+  test('venue', function(t) {
+    var doc = {
+      'name': { 'default': 'venue name' },
+      'layer': 'venue',
+      'housenumber': 'house number',
+      'street': 'street name',
+      'neighbourhood': ['neighbourhood name'],
+      'localadmin': ['localadmin name'],
+      'county': ['county name'],
+      'macrocounty': ['macrocounty name'],
+      'region_a': ['region abbr'],
+      'region': ['region name'],
+      'macroregion': ['macroregion name'],
+      'country_a': ['KOR'],
+      'country': ['South Korea']
+    };
+    t.equal(generator(doc, 'eng'),'venue name, localadmin name, South Korea');
+    t.end();
+  });
+};
+
+// when the requested language is unspecified, fields are returned in the order
+// specified by the default generator.
+module.exports.tests.south_korea_venue_lang_default = function(test, common) {
+  test('venue', function(t) {
+    var doc = {
+      'name': { 'default': 'venue name' },
+      'layer': 'venue',
+      'housenumber': 'house number',
+      'street': 'street name',
+      'neighbourhood': ['neighbourhood name'],
+      'localadmin': ['localadmin name'],
+      'county': ['county name'],
+      'macrocounty': ['macrocounty name'],
+      'region_a': ['region abbr'],
+      'region': ['region name'],
+      'macroregion': ['macroregion name'],
+      'country_a': ['KOR'],
+      'country': ['South Korea']
+    };
+    t.equal(generator(doc),'venue name, localadmin name, South Korea');
+    t.end();
+  });
+};
+
+// when the requested language is unspecified, fields are returned in the order
+// specified by the default generator.
+module.exports.tests.south_korea_admin_lang_default = function(test, common) {
+  test('venue', function(t) {
+    var doc = {
+      'name': { 'default': 'locality name' },
+      'layer': 'locality',
+      'locality': ['locality name'],
+      'county': ['county name'],
+      'macrocounty': ['macrocounty name'],
+      'region_a': ['region abbr'],
+      'region': ['region name'],
+      'macroregion': ['macroregion name'],
+      'country_a': ['KOR'],
+      'country': ['South Korea']
+    };
+    t.equal(generator(doc), 'locality name, South Korea');
     t.end();
   });
 };
