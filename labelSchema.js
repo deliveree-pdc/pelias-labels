@@ -22,6 +22,17 @@ function getFirstProperty(fields) {
     }
   };
 }
+function getProperty(fields) {
+  return function(record) {
+    for (var i = 0; i < fields.length; i++) {
+      var fieldValue = record[fields[i]];
+      
+      if (!_.isEmpty(fieldValue)) {
+        return fieldValue;
+      }
+    }
+  };
+}
 
 // this function is exclusively used for figuring out which field to use for states/provinces
 // 1.  if the record belongs to a dependency, skip the region, eg - San Juan, PR
@@ -266,7 +277,7 @@ module.exports = {
       'borough': getFirstProperty(['borough']),
       'local': getFirstProperty(['locality', 'localadmin']),
       'county': getFirstProperty(['county']),
-      'regional': getFirstProperty(['region']),
+      'regional': getProperty(['region']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
@@ -276,7 +287,7 @@ module.exports = {
       'borough': getFirstProperty(['locality', 'borough']),
       'county': getFirstProperty(['county','macrocounty']),
       'regional': getFirstProperty(['region', 'macroregion']),
-      'postalcode': getFirstProperty(['postalcode']),
+      'postalcode': getProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
@@ -285,7 +296,7 @@ module.exports = {
       'borough': getFirstProperty(['borough']),
       'county': getFirstProperty(['county','macrocounty']),
       'regional': getFirstProperty(['region', 'macroregion']),
-      'postalcode': getFirstProperty(['postalcode']),
+      'postalcode': getProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
@@ -295,7 +306,7 @@ module.exports = {
       // 'borough': getFirstProperty(['borough']),
       'county': getFirstProperty(['county','macrocounty']),
       'regional': getFirstProperty(['region', 'macroregion']),
-      'postalcode': getFirstProperty(['postalcode']),
+      'postalcode': getProperty(['postalcode']),
       'country': getFirstProperty(['dependency', 'country'])
     }
   },
